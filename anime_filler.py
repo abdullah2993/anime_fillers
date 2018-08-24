@@ -43,7 +43,7 @@ def get_show(id):
         no = int(cols[0].string.strip())
         title = unicode(cols[1].a.string.strip())
         status = cols[2].span.string.strip()
-        date =  '' if (cols[3].string is None) else cols[3].string.strip()
+        date = '' if (cols[3].string is None) else cols[3].string.strip()
         results.append({'no': no, 'title': title, 'type': status, 'date': date})
     return results
 
@@ -63,9 +63,7 @@ def main():
         json.dump(shows, sf)
 
     for i, show in enumerate(shows):
-        if i < 86:
-            continue
-        print "getting", show['name'].encode('utf8'), i, 'of', len(shows)
+        print "getting", show['name'].encode('utf8'), i + 1, 'of', len(shows)
         eps = get_show(show['id'])
         with open(show['id'] + '.json', 'w') as ef:
             json.dump(eps, ef)
